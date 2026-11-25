@@ -1134,7 +1134,7 @@ void capacidadTratamientos(char tratamientos[5][40], char nombresInsumos[5][40],
     if (tratamientosPlanificados > 0) {
         char demandaTexto[40], cantidadTexto[40];
         printf("Resultados:\n");
-        printf("%-25s %-14s %-14s %-15s\n", "Insumo", "Demanda", "Cantidad", "Capacidad");
+        printf("%-25s %-20s %-20s %-15s\n", "Insumo", "Demanda", "Cantidad", "Capacidad");
 
         contInsuficientes = 0;
 
@@ -1142,7 +1142,7 @@ void capacidadTratamientos(char tratamientos[5][40], char nombresInsumos[5][40],
             if (demandaInsumos[i] > 0) {
                 snprintf(demandaTexto, sizeof(demandaTexto), "%.3f %s", demandaInsumos[i], unidadMedida[i]);
                 snprintf(cantidadTexto, sizeof(cantidadTexto), "%.3f %s", cantidadInsumo[i], unidadMedida[i]);
-                printf("%-25s %-14.3f %-14.3f ", nombresInsumos[i], demandaInsumos[i], cantidadInsumo[i]);
+                printf("%-25s %-20s %-20s ", nombresInsumos[i], demandaTexto, cantidadTexto);
 
                 if (cantidadInsumo[i] >= demandaInsumos[i]){
                     printf("%-15s\n", "SUFICIENTE");
