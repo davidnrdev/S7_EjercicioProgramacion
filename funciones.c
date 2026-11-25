@@ -1130,25 +1130,28 @@ void capacidadTratamientos(char tratamientos[5][40], char nombresInsumos[5][40],
 
     } while (resp == 1);
 
-    printf("Resultados:\n");
 
-    printf("%-25s %-14s %-14s %-15s\n", "Insumo", "Demanda", "Cantidad", "Capacidad");
+    if (tratamientosPlanificados > 0) {
+        printf("Resultados:\n");
 
-    contInsuficientes = 0;
+        printf("%-25s %-14s %-14s %-15s\n", "Insumo", "Demanda", "Cantidad", "Capacidad");
 
-    for (i = 0; i < 5; i++) {
-        if (demandaInsumos[i] > 0) {
-            printf("%-25s %-14.3f %-14.3f ", nombresInsumos[i], demandaInsumos[i], cantidadInsumo[i]);
+        contInsuficientes = 0;
 
-            if (cantidadInsumo[i] >= demandaInsumos[i]){
-                printf("%-15s\n", "SUFICIENTE");
-            }
-            else{
-                faltante = demandaInsumos[i] - cantidadInsumo[i];
-                printf("%-15s\n", "INSUFICIENTE");
-                printf("Faltan %.3f %s de %s.\n", faltante, unidadMedida[i], nombresInsumos[i]);
-                contInsuficientes++;
+        for (i = 0; i < 5; i++) {
+            if (demandaInsumos[i] > 0) {
+                printf("%-25s %-14.3f %-14.3f ", nombresInsumos[i], demandaInsumos[i], cantidadInsumo[i]);
+
+                if (cantidadInsumo[i] >= demandaInsumos[i]){
+                    printf("%-15s\n", "SUFICIENTE");
+                }
+                else{
+                    faltante = demandaInsumos[i] - cantidadInsumo[i];
+                    printf("%-15s\n", "INSUFICIENTE");
+                    printf("Faltan %.3f %s de %s.\n", faltante, unidadMedida[i], nombresInsumos[i]);
+                    contInsuficientes++;
+                }
             }
         }
-    }
+    }   
 }
