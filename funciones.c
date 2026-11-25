@@ -89,17 +89,29 @@ int validarRangoIntMaxMin(int a, int b){
 }
 
 void leerCadenas(char *cadena, int n){
-
-    if (fgets(cadena, n, stdin) != NULL){
-        
+    if (fgets(cadena, n, stdin) != NULL) {
         int len = strcspn(cadena, "\n");
-        
         if (cadena[len] == '\n') {
             cadena[len] = '\0';
         } else {
-           
-            while ((getchar()) != '\n');;
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF);
         }
+
+        int inicio = 0;
+        while (cadena[inicio] == ' ' || cadena[inicio] == '\t' || cadena[inicio] == '\r') {
+            inicio++;
+        }
+
+        int fin = strlen(cadena);
+        while (fin > inicio && (cadena[fin - 1] == ' ' || cadena[fin - 1] == '\t' || cadena[fin - 1] == '\r')) {
+            fin--;
+        }
+
+        if (inicio > 0) {
+            memmove(cadena, cadena + inicio, fin - inicio);
+        }
+        cadena[fin - inicio] = '\0';
     }
 }
 
